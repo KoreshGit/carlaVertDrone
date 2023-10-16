@@ -8,7 +8,7 @@
 #include "Components/SphereComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "CarlaDroneMotor.h"
-#include "MavApiComponent.h"
+// #include "MavApiComponent.h"
 
 //#include "MavApiComponent.h"
 
@@ -50,8 +50,8 @@ public:
     UPROPERTY()
     UDroneMotor* Motor_Rear_Right;
 
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "MavSDK")
-    UMavApiComponent* MavComponent;
+    // UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "MavSDK")
+    // UMavApiComponent* MavComponent;
 
 
     //UPROPERTY()

@@ -9,7 +9,7 @@
 ADrone::ADrone()
 { 
 
-  MavComponent = CreateDefaultSubobject<UMavApiComponent>(TEXT("MavComponent"));
+  // MavComponent = CreateDefaultSubobject<UMavApiComponent>(TEXT("MavComponent"));
  
   
   auto RootComponent = Cast<UPrimitiveComponent>(this->GetRootComponent());

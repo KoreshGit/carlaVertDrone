@@ -75,8 +75,7 @@ public class Carla : ModuleRules
         "RenderCore",
         "RHI",
         "Renderer",
-        "ProceduralMeshComponent",
-        "MavCom"
+        "ProceduralMeshComponent"
         // ... add other public dependencies that you statically link with here ...
       }
       );

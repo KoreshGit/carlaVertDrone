@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.26",
+	"EngineAssociation": "{0004748B-08DB-97F5-E53B-EFFAAF033E64}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -15,6 +15,9 @@
 				"CoreUObject"
 			]
 		}
+		
+		
+
 	],
 	"Plugins": [
 		{

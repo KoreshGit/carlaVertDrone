@@ -62,6 +62,7 @@ foreach(target ${build_targets})
       target_link_libraries(${target} "-lrpc")
       target_link_libraries(${target} "-lgtest_main")
       target_link_libraries(${target} "-lgtest")
+      
   endif()
 
   install(TARGETS ${target} DESTINATION test OPTIONAL)

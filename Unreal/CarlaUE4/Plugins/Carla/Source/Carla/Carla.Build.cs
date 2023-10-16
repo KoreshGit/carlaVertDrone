@@ -6,6 +6,7 @@ using UnrealBuildTool;
 
 public class Carla : ModuleRules
 {
+  
   bool UsingCarSim = false;
   bool UsingChrono = false;
   bool UsingPytorch = false;
@@ -18,6 +19,8 @@ public class Carla : ModuleRules
   {
     PrivatePCHHeaderFile = "Carla.h";
 
+
+   
     if (IsWindows(Target))
     {
       bEnableExceptions = true;
@@ -72,7 +75,8 @@ public class Carla : ModuleRules
         "RenderCore",
         "RHI",
         "Renderer",
-        "ProceduralMeshComponent"
+        "ProceduralMeshComponent",
+        "MavCom"
         // ... add other public dependencies that you statically link with here ...
       }
       );
@@ -120,8 +124,10 @@ public class Carla : ModuleRules
         // ... add any modules that your module loads dynamically here ...
       }
       );
-
+   
     AddCarlaServerDependency(Target);
+   
+    
   }
 
   private bool UseDebugLibs(ReadOnlyTargetRules Target)

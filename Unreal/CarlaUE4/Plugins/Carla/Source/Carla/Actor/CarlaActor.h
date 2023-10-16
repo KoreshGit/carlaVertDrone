@@ -9,6 +9,7 @@
 #include "Carla/Actor/ActorInfo.h"
 #include "Carla/Actor/ActorData.h"
 #include "Carla/Vehicle/CarlaWheeledVehicle.h"
+#include "Carla/Vehicle/CarlaDrone.h"
 #include "Carla/Walker/WalkerController.h"
 #include "Carla/Traffic/TrafficLightState.h"
 
@@ -29,7 +30,9 @@ public:
   enum class ActorType : uint8
   {
     Other,
+    Drone,
     Vehicle,
+    Actor,
     Walker,
     TrafficLight,
     TrafficSign,
@@ -51,6 +54,7 @@ public:
   virtual ~FCarlaActor() {};
 
 
+  
   bool IsInValid() const
   {
     return (carla::rpc::ActorState::Invalid == State);
@@ -61,6 +65,7 @@ public:
     return (carla::rpc::ActorState::PendingKill != State &&
             carla::rpc::ActorState::Invalid != State);
   }
+  
 
   bool IsActive() const
   {
@@ -220,6 +225,7 @@ public:
   ECarlaServerResponse AddActorForceAtLocation(const FVector& Force, const FVector& Location);
 
   ECarlaServerResponse AddActorAngularImpulse(const FVector& AngularInpulse);
+  ECarlaServerResponse AddActorPrinter(const FVector& AngularInpulse); 
 
   ECarlaServerResponse AddActorTorque(const FVector& Torque);
 
@@ -289,6 +295,11 @@ public:
     return ECarlaServerResponse::ActorTypeMismatch;
   }
 
+  virtual ECarlaServerResponse ApplyControlToDrone()
+  {
+    return ECarlaServerResponse::ActorTypeMismatch;
+  }
+
   virtual ECarlaServerResponse ApplyAckermannControlToVehicle(
       const FVehicleAckermannControl&, const EVehicleInputPriority&)
   {
@@ -316,6 +327,11 @@ public:
   }
 
   virtual ECarlaServerResponse SetActorAutopilot(bool, bool bKeepState = false)
+  {
+    return ECarlaServerResponse::ActorTypeMismatch;
+  }
+
+  virtual ECarlaServerResponse SetActorTerutes(bool)
   {
     return ECarlaServerResponse::ActorTypeMismatch;
   }
@@ -461,6 +477,18 @@ protected:
 
 };
 
+class FDroneActor : public FCarlaActor
+{
+public:
+  FDroneActor(
+      IdType ActorId,
+      AActor* Actor,
+      TSharedPtr<const FActorInfo> Info,
+      carla::rpc::ActorState InState,
+      UWorld* World);
+  virtual ECarlaServerResponse ApplyControlToDrone() final; 
+};
+
 class FVehicleActor : public FCarlaActor
 {
 public:
@@ -515,6 +543,8 @@ public:
 
   virtual ECarlaServerResponse SetActorAutopilot(bool bEnabled, bool bKeepState = false) final;
 
+  virtual ECarlaServerResponse SetActorTerutes(bool bEnabled) final;
+
   virtual ECarlaServerResponse ShowVehicleDebugTelemetry(bool bEnabled) final;
 
   virtual ECarlaServerResponse EnableCarSim(const FString& SimfilePath) final;
@@ -538,6 +568,7 @@ public:
       UWorld* World);
 
 };
+
 
 class FTrafficSignActor : public FCarlaActor
 {

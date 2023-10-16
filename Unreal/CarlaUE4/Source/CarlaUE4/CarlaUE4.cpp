@@ -3,3 +3,4 @@
 #include "CarlaUE4.h"
 
 IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, CarlaUE4, "CarlaUE4" );
+//IMPLEMENT_MODULE( FModuleImpl, CarlaUE4 );

@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-client)
 
+
 # Enable/Install RSS VARIANT
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
 set(carla_target_postfix "")
@@ -293,6 +294,7 @@ if (LIBCARLA_BUILD_RELEASE)
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libRecast.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetour.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetourCrowd.a")
+    
 
   endif (WIN32)
 

@@ -297,6 +297,13 @@
       doc: >
         Applies a control object on the next tick, containing driving parameters such as throttle, steering or gear shifting. 
     # --------------------------------------
+
+    methods:
+    - def_name: apply_control_d
+      params:
+      doc: >
+        Applies
+    # --------------------------------------
     - def_name: apply_physics_control
       params:
       - param_name: physics_control
